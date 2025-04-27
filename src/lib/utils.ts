@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { format, parseISO } from "date-fns"
 import { twMerge } from "tailwind-merge"
+import type { SearchUtilProps } from "./store/types"
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -25,6 +26,36 @@ export function dateToLocaleString(dateString: string) {
 		console.error(`Error while formatting date: ${error}`)
 		return
 	}
+}
+
+export function searchUtil({ type, searchVal, fileVal }: SearchUtilProps) {
+	if (type === "tags") {
+		const searchTags = searchVal as string[]
+		const fileTags = fileVal as string[]
+
+		if (!searchTags || searchTags.length === 0) return true
+
+		if (searchTags.length) {
+			const matchesFound = searchTags.every(tag => fileTags.includes(tag))
+
+			if (!matchesFound) return false
+		}
+	} else {
+		const searchTerms = searchVal as string
+		const fileTerms = fileVal as string
+
+		if (!searchTerms || searchTerms === "") return true
+
+		if (searchTerms.length) {
+			const matchesFound = searchTerms
+				.toLowerCase()
+				.split(/\.+\/,+\s+/)
+				.every((term: string) => fileTerms.includes(term))
+
+			if (!matchesFound) return false
+		}
+	}
+	return true
 }
 
 export const sampleFiles = [

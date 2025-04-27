@@ -25,6 +25,7 @@ function SearchFile() {
 		defaultValues: {
 			name: "",
 			owner: "",
+			mimeType: "",
 			tags: [],
 		},
 	})
@@ -36,7 +37,9 @@ function SearchFile() {
 
 	return (
 		<div className=" max-h-1/2">
-			<h2 className="text-lg font-bold">Search Files</h2>
+			<h2 className="text-lg font-bold bg-gray-90 shadow-accent-foreground">
+				Search Files
+			</h2>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
@@ -57,7 +60,7 @@ function SearchFile() {
 							)}
 						/>
 					))}
-					<div className="flex gap-2 justify-center w-3/4">
+					<div className="flex gap-2 justify-center w-3/4 mt-2">
 						<Button type="submit" className="w-1/2">
 							Search
 						</Button>

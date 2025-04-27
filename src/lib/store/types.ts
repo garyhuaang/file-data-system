@@ -75,3 +75,9 @@ export type SearchFieldState = {
 	label: string
 	placeholder: string
 }
+
+export type SearchUtilProps = {
+	type: "tags" | "string"
+	searchVal: string | string[] | number
+	fileVal: string | string[] | number
+}

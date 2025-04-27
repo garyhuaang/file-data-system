@@ -1,13 +1,13 @@
 import {
 	AddVersionProps,
 	File,
-	SearchFileProps,
 	type AddFileProps,
+	type SearchFileProps,
 	type Version,
 } from "../store/types"
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { generateId, sampleFiles } from "../utils"
+import { generateId, sampleFiles, searchUtil } from "../utils"
 
 type filesState = {
 	files: File[]
@@ -18,7 +18,7 @@ type filesState = {
 const initialState: filesState = {
 	files: sampleFiles,
 	selectedFile: null,
-	searchResults: [],
+	searchResults: sampleFiles,
 }
 
 const filesSlice = createSlice({
@@ -51,7 +51,33 @@ const filesSlice = createSlice({
 			state.selectedFile = action.payload
 		},
 		searchFile: (state, action: PayloadAction<SearchFileProps>) => {
-			console.log(action.payload)
+			state.searchResults = state.files.filter(file => {
+				const nameFound = searchUtil({
+					type: "string",
+					searchVal: action.payload.name,
+					fileVal: file.name,
+				})
+
+				const typeFound = searchUtil({
+					type: "string",
+					searchVal: action.payload.mimeType,
+					fileVal: file.mimeType,
+				})
+
+				const ownerFound = searchUtil({
+					type: "string",
+					searchVal: action.payload.owner,
+					fileVal: file.owner,
+				})
+
+				const tagsFound = searchUtil({
+					type: "tags",
+					searchVal: action.payload.tags,
+					fileVal: file.tags,
+				})
+
+				return nameFound && typeFound && ownerFound && tagsFound
+			})
 		},
 		addVersion: (state, action: PayloadAction<AddVersionProps>) => {
 			if (!state.selectedFile) return

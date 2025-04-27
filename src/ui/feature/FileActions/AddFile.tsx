@@ -76,7 +76,7 @@ function AddFile() {
 							)}
 						/>
 					))}
-					<div className="flex gap-2 justify-center w-3/4">
+					<div className="flex gap-2 justify-center w-3/4 mt-2">
 						<Button type="submit" className="w-1/2 bg-green-500">
 							Add file
 						</Button>

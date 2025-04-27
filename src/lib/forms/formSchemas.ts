@@ -9,6 +9,7 @@ export const versionFormSchema = z.object({
 export const searchFormSchema = z.object({
 	name: z.string(),
 	owner: z.string(),
+	mimeType: z.string(),
 	tags: z.array(z.string()),
 })
 

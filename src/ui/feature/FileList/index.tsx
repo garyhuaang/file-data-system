@@ -20,11 +20,11 @@ function FileList() {
 		<div className="flex flex-col h-full">
 			<h2 className="text-lg font-bold bg-white mb-2">Files:</h2>
 			<section className="space-y-4 overflow-y-scroll p-4">
-				{state.files.map(file => (
+				{state.searchResults.map(file => (
 					<Card
 						key={file.id}
 						id={file.id.toString()}
-						className="p-2 border rounded w-full hover:shadow-popover-foreground hover:shadow-primary  transition-colors"
+						className="p-2 border rounded w-full hover:shadow-primary"
 					>
 						<CardHeader className="flex justify-between items-center">
 							<Label className="font-semibold">{file.name}</Label>

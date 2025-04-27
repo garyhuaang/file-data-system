@@ -16,7 +16,7 @@ const FilesMain = () => {
 				</div>
 			</div>
 			<div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 h-11/12">
-				<div className="bg-gray-100 p-4 min-h-200">
+				<div className="bg-gray-100 p-4 min-h-205">
 					<SearchFiles />
 					<AddFiles />
 				</div>
