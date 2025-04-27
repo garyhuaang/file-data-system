@@ -20,5 +20,5 @@ export const addFileFormSchema = z.object({
 	mimeType: z.string(),
 	owner: z.string(),
 	comment: z.string(),
-	tags: z.array(z.string()),
+	tags: z.string(),
 })

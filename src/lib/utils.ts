@@ -32,11 +32,13 @@ export function searchUtil({ type, searchVal, fileVal }: SearchUtilProps) {
 	if (type === "tags") {
 		const theMVPSearchVal = searchVal as string
 		const fileTags = fileVal as string[]
-		const searchTags = theMVPSearchVal.split(/\s+\.+\/,+/)
+		const searchTags = theMVPSearchVal.split(/[\s+.+,+\-+]/)
 
 		if (!searchTags || searchTags.length === 0) return true
 
 		if (searchTags.length) {
+			console.log("🚀 ~ searchUtil ~ searchTags:", searchTags)
+
 			const matchesFound = searchTags.every(tag => fileTags.includes(tag))
 
 			if (!matchesFound) return false

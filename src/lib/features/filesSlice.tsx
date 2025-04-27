@@ -31,7 +31,7 @@ const filesSlice = createSlice({
 				versionNumber: 1,
 				size: action.payload.size,
 				modifiedAt: currentDate,
-				modifiedBy: action.payload.owner,
+				modifiedBy: action.payload.owner.toLowerCase(),
 				comment: action.payload.comment,
 			}
 			const newFile = {
@@ -40,12 +40,17 @@ const filesSlice = createSlice({
 				modifiedAt: currentDate,
 				id: generateId(),
 				versions: [newVersion],
+				tags: action.payload.tags
+					.toString()
+					.toLowerCase()
+					.split(/[\s+.+,+\-+]/),
 			}
 			state.files.push(newFile)
+			state.searchResults.push(newFile)
 		},
 		removeFile: (state, action: PayloadAction<File>) => {
-			console.log(action.payload)
 			state.files = state.files.filter(file => file.id !== action.payload.id)
+			state.searchResults = state.files
 		},
 		selectFile: (state, action: PayloadAction<File>) => {
 			state.selectedFile = action.payload
@@ -103,7 +108,7 @@ const filesSlice = createSlice({
 			state.selectedFile.versions = versions
 		},
 		resetSearch: state => {
-			return { ...state, searchResults: [...sampleFiles] }
+			return { ...state, searchResults: [...state.files] }
 		},
 	},
 })

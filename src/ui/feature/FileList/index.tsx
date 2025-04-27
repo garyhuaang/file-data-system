@@ -25,6 +25,7 @@ function FileList() {
 						key={file.id}
 						id={file.id.toString()}
 						className="p-2 border rounded w-full hover:shadow-primary"
+						onClick={() => dispatch(selectFile(file))}
 					>
 						<CardHeader className="flex justify-between items-center">
 							<Label className="font-semibold">{file.name}</Label>
@@ -36,10 +37,7 @@ function FileList() {
 								<CircleXIcon />
 							</Button>
 						</CardHeader>
-						<CardContent
-							onClick={() => dispatch(selectFile(file))}
-							className="cursor-pointer"
-						>
+						<CardContent className="cursor-pointer">
 							<Label className="text-sm text-gray-600">Path: {file.path}</Label>
 							<Label className="text-sm text-gray-600">Size: {file.size}</Label>
 							<Label className="text-sm text-gray-600">

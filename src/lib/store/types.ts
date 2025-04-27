@@ -46,7 +46,7 @@ export type AddFileProps = {
 	mimeType: string
 	owner: string
 	comment: string
-	tags: string[]
+	tags: string
 }
 
 export type AddVersionProps = {
@@ -64,7 +64,7 @@ export type AddVersionField = {
 	placeholder: string
 }
 
-export type AddFieldFieldState = {
+export type AddFileFieldState = {
 	name: AddFileFormFieldName
 	label: string
 	placeholder: string

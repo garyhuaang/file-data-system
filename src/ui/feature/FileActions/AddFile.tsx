@@ -6,7 +6,7 @@ import { addFile } from "@/lib/features/filesSlice"
 import { addFileFields } from "@/lib/forms/formFieldStates"
 import { addFileFormSchema } from "@/lib/forms/formSchemas"
 import { useAppDispatch } from "@/lib/hooks"
-import { type AddFieldFieldState, type AddFileProps } from "@/lib/store/types"
+import { type AddFileFieldState, type AddFileProps } from "@/lib/store/types"
 import {
 	Button,
 	Form,
@@ -29,7 +29,7 @@ function AddFile() {
 			mimeType: "",
 			owner: "",
 			comment: "",
-			tags: [],
+			tags: "",
 		},
 	})
 
@@ -46,7 +46,7 @@ function AddFile() {
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-col space-y-2 p-4 max-w-130 min-w-80 items-center mr-1"
 				>
-					{addFileFields.map((fileField: AddFieldFieldState) => (
+					{addFileFields.map((fileField: AddFileFieldState) => (
 						<FormField
 							key={fileField.name}
 							control={form.control}

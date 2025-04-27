@@ -1,7 +1,7 @@
 import {
+	AddFileFieldState,
 	AddVersionField,
 	SearchFieldState,
-	type AddFieldFieldState,
 } from "@/lib/store/types"
 
 export const searchFields: SearchFieldState[] = [
@@ -11,7 +11,7 @@ export const searchFields: SearchFieldState[] = [
 	{
 		name: "tags",
 		label: "Tags: ",
-		placeholder: "Enter tags, seperated by commas",
+		placeholder: "Enter tags",
 	},
 ]
 
@@ -25,9 +25,10 @@ export const versionFields: AddVersionField[] = [
 	{ name: "comment", label: "Comments: ", placeholder: "Enter comments" },
 ]
 
-export const addFileFields: AddFieldFieldState[] = [
+export const addFileFields: AddFileFieldState[] = [
 	{ name: "name", label: "File name: ", placeholder: "Enter file name" },
 	{ name: "mimeType", label: "File type: ", placeholder: "Enter file type" },
+	{ name: "path", label: "Path: ", placeholder: "Location of file" },
 	{ name: "size", label: "Size (in bytes): ", placeholder: "Enter file size" },
 	{
 		name: "owner",
@@ -35,4 +36,5 @@ export const addFileFields: AddFieldFieldState[] = [
 		placeholder: "Enter your name",
 	},
 	{ name: "comment", label: "Comments: ", placeholder: "Enter comments" },
+	{ name: "tags", label: "Tags: ", placeholder: "Enter tags" },
 ]
