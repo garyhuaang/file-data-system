@@ -10,7 +10,7 @@ export const searchFormSchema = z.object({
 	name: z.string(),
 	owner: z.string(),
 	mimeType: z.string(),
-	tags: z.array(z.string()),
+	tags: z.string(),
 })
 
 export const addFileFormSchema = z.object({

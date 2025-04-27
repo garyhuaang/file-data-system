@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { searchFile } from "@/lib/features/filesSlice"
+import { resetSearch, searchFile } from "@/lib/features/filesSlice"
 import { searchFields } from "@/lib/forms/formFieldStates"
 import { searchFormSchema } from "@/lib/forms/formSchemas"
 import { useAppDispatch } from "@/lib/hooks"
@@ -26,12 +26,16 @@ function SearchFile() {
 			name: "",
 			owner: "",
 			mimeType: "",
-			tags: [],
+			tags: "",
 		},
 	})
 
 	function onSubmit(values: z.infer<typeof searchFormSchema>) {
 		dispatch(searchFile(values as SearchFileProps))
+	}
+
+	function handleReset() {
+		dispatch(resetSearch())
 		form.reset()
 	}
 
@@ -64,11 +68,7 @@ function SearchFile() {
 						<Button type="submit" className="w-1/2">
 							Search
 						</Button>
-						<Button
-							variant="outline"
-							className="w-1/2"
-							onClick={() => form.reset()}
-						>
+						<Button variant="outline" className="w-1/2" onClick={handleReset}>
 							Reset
 						</Button>
 					</div>

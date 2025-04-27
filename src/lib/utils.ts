@@ -30,8 +30,9 @@ export function dateToLocaleString(dateString: string) {
 
 export function searchUtil({ type, searchVal, fileVal }: SearchUtilProps) {
 	if (type === "tags") {
-		const searchTags = searchVal as string[]
+		const theMVPSearchVal = searchVal as string
 		const fileTags = fileVal as string[]
+		const searchTags = theMVPSearchVal.split(/\s+\.+\/,+/)
 
 		if (!searchTags || searchTags.length === 0) return true
 

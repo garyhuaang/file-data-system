@@ -52,29 +52,37 @@ const filesSlice = createSlice({
 		},
 		searchFile: (state, action: PayloadAction<SearchFileProps>) => {
 			state.searchResults = state.files.filter(file => {
-				const nameFound = searchUtil({
-					type: "string",
-					searchVal: action.payload.name,
-					fileVal: file.name,
-				})
+				const nameFound =
+					!action.payload.name ||
+					searchUtil({
+						type: "string",
+						searchVal: action.payload.name,
+						fileVal: file.name,
+					})
 
-				const typeFound = searchUtil({
-					type: "string",
-					searchVal: action.payload.mimeType,
-					fileVal: file.mimeType,
-				})
+				const typeFound =
+					!action.payload.mimeType ||
+					searchUtil({
+						type: "string",
+						searchVal: action.payload.mimeType,
+						fileVal: file.mimeType,
+					})
 
-				const ownerFound = searchUtil({
-					type: "string",
-					searchVal: action.payload.owner,
-					fileVal: file.owner,
-				})
+				const ownerFound =
+					!action.payload.owner ||
+					searchUtil({
+						type: "string",
+						searchVal: action.payload.owner,
+						fileVal: file.owner,
+					})
 
-				const tagsFound = searchUtil({
-					type: "tags",
-					searchVal: action.payload.tags,
-					fileVal: file.tags,
-				})
+				const tagsFound =
+					!action.payload.tags ||
+					searchUtil({
+						type: "tags",
+						searchVal: action.payload.tags,
+						fileVal: file.tags,
+					})
 
 				return nameFound && typeFound && ownerFound && tagsFound
 			})
@@ -94,10 +102,19 @@ const filesSlice = createSlice({
 			})
 			state.selectedFile.versions = versions
 		},
+		resetSearch: state => {
+			return { ...state, searchResults: [...sampleFiles] }
+		},
 	},
 })
 
-export const { addFile, removeFile, selectFile, searchFile, addVersion } =
-	filesSlice.actions
+export const {
+	addFile,
+	removeFile,
+	selectFile,
+	searchFile,
+	addVersion,
+	resetSearch,
+} = filesSlice.actions
 
 export default filesSlice.reducer

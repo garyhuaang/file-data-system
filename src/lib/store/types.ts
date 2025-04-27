@@ -36,7 +36,7 @@ export type SearchFileProps = {
 	name: string
 	mimeType: string
 	owner: string
-	tags: string[]
+	tags: string
 }
 
 export type AddFileProps = {
