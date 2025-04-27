@@ -6,7 +6,7 @@ import { searchFile } from "@/lib/features/filesSlice"
 import { searchFields } from "@/lib/forms/formFieldStates"
 import { searchFormSchema } from "@/lib/forms/formSchemas"
 import { useAppDispatch } from "@/lib/hooks"
-import { SearchFieldState, SearchFileProps } from "@/lib/store/types"
+import { SearchFileProps, type SearchFieldState } from "@/lib/store/types"
 import {
 	Button,
 	Form,
@@ -35,32 +35,35 @@ function SearchFile() {
 	}
 
 	return (
-		<div className="mb-6">
-			<h2 className="text-lg font-bold mb-2">Search Files</h2>
+		<div className=" max-h-1/2">
+			<h2 className="text-lg font-bold">Search Files</h2>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="flex flex-col space-y-2 p-4 max-w-130 min-w-80 items-center mr-1"
+				>
 					{searchFields.map((searchField: SearchFieldState) => (
 						<FormField
 							key={searchField.name}
 							control={form.control}
 							name={searchField.name as "name"}
 							render={({ field }) => (
-								<FormItem>
+								<FormItem className="w-full">
 									<FormLabel>{searchField.label}</FormLabel>
 									<FormControl>
-										<Input placeholder={searchField.placeHolder} {...field} />
+										<Input placeholder={searchField.placeholder} {...field} />
 									</FormControl>
 								</FormItem>
 							)}
 						/>
 					))}
-					<div className="flex gap-2">
-						<Button type="submit" className="w-6/12">
+					<div className="flex gap-2 justify-center w-3/4">
+						<Button type="submit" className="w-1/2">
 							Search
 						</Button>
 						<Button
 							variant="outline"
-							className="w-6/12"
+							className="w-1/2"
 							onClick={() => form.reset()}
 						>
 							Reset

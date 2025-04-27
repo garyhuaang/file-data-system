@@ -15,16 +15,15 @@ import { sampleFiles } from "@/lib/utils"
 
 function FileList() {
 	const dispatch = useAppDispatch()
-
 	return (
-		<div className="flex flex-col h-full">
-			<h2 className="text-lg font-bold mb-2">Files:</h2>
-			<div className="overflow-auto space-y-2 self-center p-3">
+		<div className="flex flex-col min-h-100">
+			<h2 className="text-lg font-bold bg-white mb-2">Files:</h2>
+			<div className="overflow-auto space-y-2 w-full p-4">
 				{sampleFiles.map(file => (
 					<Card
 						key={file.id}
 						id={file.id.toString()}
-						className={"p-3 border rounded cursor-pointer w-80"}
+						className="p-2 border rounded cursor-pointer w-full"
 						onClick={() => dispatch(selectFile(file))}
 					>
 						<CardHeader className="flex justify-between items-center">
@@ -38,10 +37,7 @@ function FileList() {
 						</CardHeader>
 						<CardContent>
 							<Label className="text-sm text-gray-600">Path: {file.path}</Label>
-							<Label className="text-sm text-gray-600">
-								Size:
-								{file.size}
-							</Label>
+							<Label className="text-sm text-gray-600">Size: {file.size}</Label>
 							<Label className="text-sm text-gray-600">
 								Type: {file.mimeType}
 							</Label>
@@ -65,5 +61,4 @@ function FileList() {
 		</div>
 	)
 }
-
 export default FileList

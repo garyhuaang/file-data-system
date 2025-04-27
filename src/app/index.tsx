@@ -2,7 +2,7 @@ import FilesMain from "@/ui/feature/FileMain"
 
 function App() {
 	return (
-		<div>
+		<div className="h-screen overflow-auto">
 			<FilesMain />
 		</div>
 	)

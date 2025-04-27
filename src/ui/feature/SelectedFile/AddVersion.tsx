@@ -35,7 +35,7 @@ function AddVersion() {
 	}
 
 	return (
-		<>
+		<div className="h-1/3">
 			<h3 className="font-semibold mb-2">Add New Version</h3>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -52,13 +52,12 @@ function AddVersion() {
 											placeholder={versionField.placeholder}
 											{...field}
 											onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-												if (
-													versionField.name === "size" &&
-													!isNaN(Number(e.target.value))
-												) {
-													field.onChange(
-														e.target.value === "" ? 0 : Number(e.target.value),
-													)
+												if (versionField.name === "size") {
+													const value =
+														e.target.value === "" ? 0 : Number(e.target.value)
+													if (!isNaN(value)) {
+														field.onChange(value)
+													}
 												} else {
 													field.onChange(e.target.value)
 												}
@@ -75,7 +74,7 @@ function AddVersion() {
 					<Button type="submit">Add Version</Button>
 				</form>
 			</Form>
-		</>
+		</div>
 	)
 }
 

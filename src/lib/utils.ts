@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx"
+import { format, parseISO } from "date-fns"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -14,8 +15,16 @@ export const generateId = () => {
 	return timestamp * 10000 + randomPart
 }
 
-export const dateToLocaleString = (date: string): string => {
-	return new Date(date).toLocaleString()
+export function dateToLocaleString(dateString: string) {
+	try {
+		const date = new Date(dateString).toISOString()
+		const parsedDate = parseISO(date)
+
+		return format(parsedDate, "MM/dd/yyyy, h:mm a")
+	} catch (error) {
+		console.error(`Error while formatting date: ${error}`)
+		return
+	}
 }
 
 export const sampleFiles = [

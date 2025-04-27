@@ -10,7 +10,7 @@ function SelectedFileVersions({ versions }: { versions: Version[] }) {
 	// }, [versions])
 
 	return (
-		<div className="space-y-2 p-2 ">
+		<div className="space-y-2 p-2 h-1/3">
 			{versions.map(version => (
 				<div
 					key={version.versionNumber}
@@ -27,7 +27,7 @@ function SelectedFileVersions({ versions }: { versions: Version[] }) {
 						Modified at: {dateToLocaleString(version.modifiedAt)}
 					</span>
 					<span className="text-sm text-gray-600">
-						Modified by: {dateToLocaleString(version.modifiedBy)}
+						Modified by: {version.modifiedBy}
 					</span>
 					<span className="text-sm italic mt-1">"{version.comment}"</span>
 				</div>

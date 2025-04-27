@@ -1,6 +1,9 @@
 import { z } from "zod"
 
-import { versionFormSchema } from "@/lib/forms/formSchemas"
+import {
+	versionFormSchema,
+	type addFileFormSchema,
+} from "@/lib/forms/formSchemas"
 
 export type Version = {
 	versionNumber: number
@@ -42,6 +45,7 @@ export type AddFileProps = {
 	size: number | null
 	mimeType: string
 	owner: string
+	comment: string
 	tags: string[]
 }
 
@@ -52,6 +56,7 @@ export type AddVersionProps = {
 }
 
 type VersionFormFieldName = keyof z.infer<typeof versionFormSchema>
+type AddFileFormFieldName = keyof z.infer<typeof addFileFormSchema>
 
 export type AddVersionField = {
 	name: VersionFormFieldName
@@ -59,8 +64,14 @@ export type AddVersionField = {
 	placeholder: string
 }
 
+export type AddFieldFieldState = {
+	name: AddFileFormFieldName
+	label: string
+	placeholder: string
+}
+
 export type SearchFieldState = {
 	name: string
 	label: string
-	placeHolder: string
+	placeholder: string
 }

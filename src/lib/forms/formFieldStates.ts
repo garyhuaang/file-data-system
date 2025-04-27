@@ -1,21 +1,37 @@
-import { AddVersionField, SearchFieldState } from "@/lib/store/types"
+import {
+	AddVersionField,
+	SearchFieldState,
+	type AddFieldFieldState,
+} from "@/lib/store/types"
 
 export const searchFields: SearchFieldState[] = [
-	{ name: "name", label: "File name: ", placeHolder: "Enter file name" },
-	{ name: "mimeType", label: "File type", placeHolder: "Enter file type" },
-	{ name: "owner", label: "Owner: ", placeHolder: "Enter owner" },
+	{ name: "name", label: "File name: ", placeholder: "Enter file name" },
+	{ name: "mimeType", label: "File type", placeholder: "Enter file type" },
+	{ name: "owner", label: "Owner: ", placeholder: "Enter owner" },
 	{
 		name: "tags",
 		label: "Tags: ",
-		placeHolder: "Enter tags, seperated by commas",
+		placeholder: "Enter tags, seperated by commas",
 	},
 ]
 
 export const versionFields: AddVersionField[] = [
-	{ name: "size", label: "Size: ", placeholder: "Size in bytes" },
+	{ name: "size", label: "Size (in bytes): ", placeholder: "Enter file size" },
 	{
 		name: "modifiedBy",
 		label: "Modified by: ",
+		placeholder: "Enter your name",
+	},
+	{ name: "comment", label: "Comments: ", placeholder: "Enter comments" },
+]
+
+export const addFileFields: AddFieldFieldState[] = [
+	{ name: "name", label: "File name: ", placeholder: "Enter file name" },
+	{ name: "mimeType", label: "File type: ", placeholder: "Enter file type" },
+	{ name: "size", label: "Size (in bytes): ", placeholder: "Enter file size" },
+	{
+		name: "owner",
+		label: "Owner: ",
 		placeholder: "Enter your name",
 	},
 	{ name: "comment", label: "Comments: ", placeholder: "Enter comments" },
