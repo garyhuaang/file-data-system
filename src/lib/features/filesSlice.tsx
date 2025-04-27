@@ -43,7 +43,10 @@ const filesSlice = createSlice({
 			}
 			state.files.push(newFile)
 		},
-		// removeFile: (state, action: PayloadAction<File>) => {},
+		removeFile: (state, action: PayloadAction<File>) => {
+			console.log(action.payload)
+			state.files = state.files.filter(file => file.id !== action.payload.id)
+		},
 		selectFile: (state, action: PayloadAction<File>) => {
 			state.selectedFile = action.payload
 		},
@@ -68,12 +71,7 @@ const filesSlice = createSlice({
 	},
 })
 
-export const {
-	addFile,
-	//  removeFile,
-	selectFile,
-	searchFile,
-	addVersion,
-} = filesSlice.actions
+export const { addFile, removeFile, selectFile, searchFile, addVersion } =
+	filesSlice.actions
 
 export default filesSlice.reducer

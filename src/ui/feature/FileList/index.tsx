@@ -1,3 +1,4 @@
+import { CircleXIcon } from "@/assets"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
 
 import {
@@ -10,7 +11,7 @@ import {
 	Label,
 } from "@/ui/base"
 
-import { selectFile } from "@/lib/features/filesSlice"
+import { removeFile, selectFile } from "@/lib/features/filesSlice"
 
 function FileList() {
 	const dispatch = useAppDispatch()
@@ -18,24 +19,27 @@ function FileList() {
 	return (
 		<div className="flex flex-col h-full">
 			<h2 className="text-lg font-bold bg-white mb-2">Files:</h2>
-			<section className="space-y-2 overflow-y-scroll">
+			<section className="space-y-4 overflow-y-scroll p-4">
 				{state.files.map(file => (
 					<Card
 						key={file.id}
 						id={file.id.toString()}
-						className="p-2 border rounded cursor-pointer w-full"
-						onClick={() => dispatch(selectFile(file))}
+						className="p-2 border rounded w-full hover:shadow-popover-foreground hover:shadow-primary  transition-colors"
 					>
 						<CardHeader className="flex justify-between items-center">
 							<Label className="font-semibold">{file.name}</Label>
 							<Button
 								variant="link"
-								className="text-red-500 hover:text-red-700"
+								className="text-red-500 hover:text-red-700 cursor-pointer"
+								onClick={() => dispatch(removeFile(file))}
 							>
-								Delete
+								<CircleXIcon />
 							</Button>
 						</CardHeader>
-						<CardContent>
+						<CardContent
+							onClick={() => dispatch(selectFile(file))}
+							className="cursor-pointer"
+						>
 							<Label className="text-sm text-gray-600">Path: {file.path}</Label>
 							<Label className="text-sm text-gray-600">Size: {file.size}</Label>
 							<Label className="text-sm text-gray-600">
