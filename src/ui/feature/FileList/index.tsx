@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/lib/hooks"
+import { useAppDispatch, useAppSelector } from "@/lib/hooks"
 
 import {
 	Badge,
@@ -11,15 +11,15 @@ import {
 } from "@/ui/base"
 
 import { selectFile } from "@/lib/features/filesSlice"
-import { sampleFiles } from "@/lib/utils"
 
 function FileList() {
 	const dispatch = useAppDispatch()
+	const state = useAppSelector(state => state.filesSliceReducer)
 	return (
-		<div className="flex flex-col min-h-100">
+		<div className="flex flex-col h-full">
 			<h2 className="text-lg font-bold bg-white mb-2">Files:</h2>
-			<div className="overflow-auto space-y-2 w-full p-4">
-				{sampleFiles.map(file => (
+			<section className="space-y-2 overflow-y-scroll">
+				{state.files.map(file => (
 					<Card
 						key={file.id}
 						id={file.id.toString()}
@@ -57,7 +57,7 @@ function FileList() {
 						</CardFooter>
 					</Card>
 				))}
-			</div>
+			</section>
 		</div>
 	)
 }
