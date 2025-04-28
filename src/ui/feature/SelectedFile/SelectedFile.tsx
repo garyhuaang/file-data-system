@@ -1,5 +1,6 @@
 import { useAppSelector } from "@/lib/hooks"
 import { Separator } from "@/ui/base"
+import { FileTextIcon } from "lucide-react"
 import AddVersion from "./AddVersion"
 import FileDetails from "./FileDetails"
 import SelectedFileVersions from "./SelectedFileVersions"
@@ -10,7 +11,7 @@ function SelectedFile() {
 	)
 
 	return (
-		<>
+		<div className="h-full min-h-235">
 			{selectedFile ? (
 				<>
 					<h2 className="text-lg font-bold mb-2">Details</h2>
@@ -26,11 +27,12 @@ function SelectedFile() {
 					<AddVersion />
 				</>
 			) : (
-				<h2 className="text-lg font-bold mb-2">
+				<h2 className="flex flex-col h-full items-center justify-center text-2xl font-bold mb-2 bg-gray-500 text-white">
+					<FileTextIcon className="h-20 w-20" />
 					Select a file to view details
 				</h2>
 			)}
-		</>
+		</div>
 	)
 }
 

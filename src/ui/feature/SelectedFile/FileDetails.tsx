@@ -32,8 +32,8 @@ function FileDetails({ selectedFile }: { selectedFile: File }) {
 			<CardContent className="grid grid-cols-2 gap-2 w-full text-xs">
 				{fileFields.map((field, index) => (
 					<div key={index} className="flex gap-2">
-						<Label className="text-gray-600 text-[10px]">{field.label}</Label>
-						<Label className="text-[10px] flex-wrap">{field.value}</Label>
+						<Label className="text-gray-600">{field.label}</Label>
+						<Label className="flex-wrap">{field.value}</Label>
 					</div>
 				))}
 			</CardContent>

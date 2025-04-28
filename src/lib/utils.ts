@@ -37,8 +37,6 @@ export function searchUtil({ type, searchVal, fileVal }: SearchUtilProps) {
 		if (!searchTags || searchTags.length === 0) return true
 
 		if (searchTags.length) {
-			console.log("🚀 ~ searchUtil ~ searchTags:", searchTags)
-
 			const matchesFound = searchTags.every(tag => fileTags.includes(tag))
 
 			if (!matchesFound) return false
